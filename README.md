@@ -18,7 +18,7 @@ This is a Django-based Inventory Management System designed for small businesses
    ```bash
    git clone <repository-url>
 
-5. Requirements install :
+5. Requirements install:
    ```bash
    pip install django
    
