@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Page</title>
+    <style>
+
+        .wrapper {
+            display: grid;
+            place-content: center;
+            background-color: var(--background-color);
+            font-family: "Oswald", sans-serif;
+            font-size: 15px;
+            font-weight: 10;
+            text-transform: uppercase;
+            color: var(--text-color);
+        }
+
+        .wrapper > div {
+            grid-area: 1/1/-1/-1;
+        }
+        .top {
+            margin : 20px;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 0% 60%);
+        }
+        .bottom {
+            margin : 20px;
+            clip-path: polygon(0% 70%, 100% 40%, 100% 100%, 0% 100%);
+            color: rgba(0,0,0,0.5);
+            background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+            background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            transform: translateX(-0.02em);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(135deg, #4c6ef5, #d6336c);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            animation: fadeInBody 1.5s ease;
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            width: 350px;
+            text-align: center;
+            animation: slideUp 1.2s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff; }
+            to { text-shadow: 0 0 15px #ffe6f0; }
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        input:focus {
+            transform: scale(1.05);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #4c6ef5;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #364fc7;
+            transform: scale(1.05);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeInLinks 1.8s ease forwards;
+        }
+
+        @keyframes fadeInLinks {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        ul li a:hover {
+            transform: scale(1.1);
+        }
+
+        p {
+            .top {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login / <a href = "admin/">Administration</a></h1>
+        
+
+        <form action="." method="post">
+            {% csrf_token %}
+
+            <input type="text" name='usn' placeholder="Username" />
+            <input type="password" name='psw' placeholder="Password" />
+        
+
+            <ul>
+                <li><a><button name="mode" type="submit" value="s">Show Stocks</button></a></li>
+                <li><a><button name="mode" type="submit" value="o">Order Stocks</button></a></li>
+                <li> <section class="wrapper">
+                <div class="top">{{ state }}</div>
+                <div class="bottom" aria-hidden="true">{{ state }}</div>
+                </section></li>
+                
+            </ul>
+
+        </form>
+        
+    </div>
+</body>
+</html>

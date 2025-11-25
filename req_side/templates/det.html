@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order / Search Form</title>
+    
+    <style>
+
+        /* --- General Layout --- */
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #597efaff, #ae00ffff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding-top: 40px;
+            animation: fadeIn 0.3s ease-out ;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.2; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-card {
+            background: #ffffff;
+            width: 500px;
+            padding: 35px 55px 35px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 300px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-card h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+
+
+        /* --- Inputs --- */
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+            margin-top: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 14px;
+            border: 1px solid #aaa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4a76ff;
+            box-shadow: 0 0 8px rgba(74,118,255,0.45);
+            transform: scale(1.02);
+            outline: none;
+        }
+
+
+
+        /* --- Custom Radio Buttons --- */
+        .radio-item {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-item input {
+            opacity: 0;  /* hide default radio */
+            position: absolute;
+            left: 0;
+        }
+
+        .custom-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #4a76ff;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            transition: 0.25s ease;
+        }
+
+        /* Radio circle fill */
+        .custom-radio::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #4a76ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: scale(0) translate(-50%, -50%);
+            transition: 0.25s ease;
+        }
+
+        /* When checked → animate fill */
+        .radio-item input:checked + .custom-radio::after {
+            transform: scale(1) translate(-50%, -50%);
+        }
+
+        /* Hover effects */
+        .radio-item:hover .custom-radio {
+            border-color: #204eff;
+            transform: scale(1.1);
+        }
+
+        /* Text next to radio */
+        .radio-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-left: 6px;
+        }
+
+
+
+        /* --- Submit Button --- */
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 30px;
+            background: #6b4affff;
+            color: white;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #583cd3ff;
+            box-shadow: 0 0 15px rgba(74,118,255,0.9);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.97);
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #5397afff;
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #498196ff;
+            box-shadow: 0 0 12px rgba(109, 137, 199, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .back-btn:active {
+            transform: scale(0.97);
+        }
+
+                .ot-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #bbbbbb;
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .ot-btn:hover {
+            background: #999999;
+            box-shadow: 0 0 12px rgba(180,180,180,0.7);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+
+        body {
+            padding: 15px;
+            padding-top: 15px;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 100%;
+        }
+
+        .title {
+            font-size: 22px;
+        }
+
+        input {
+            font-size: 14.5px;
+            padding: 10px;
+        }
+
+        .item {
+            padding: 12px;
+        }
+
+        .item-name {
+            font-size: 15px;
+        }
+
+        .item-info, .item-amt {
+            font-size: 13.5px;
+        }
+    }
+
+
+
+    @media (min-width: 1100px) {
+        .container {
+            max-width: 550px;
+            padding: 35px;
+        }
+
+        .title {
+            font-size: 28px;
+        }
+
+        input {
+            font-size: 17px;
+            padding: 14px;
+        }
+
+        .item {
+            padding: 18px;
+        }
+
+        .item-name {
+            font-size: 17px;
+        }
+
+        .item-info, .item-amt {
+            font-size: 15px;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="form-card">
+        <h2>Order / Search Form</h2>
+
+        <form action="." method="post">
+            {% csrf_token %}
+
+            <label>Name:</label>
+            <input type="text" name="name" value="{{value.name}}" maxlength="50">
+
+            <label>Code:</label>
+            <input type="text" name="code" value="{{value.code}}" maxlength="10">
+
+            <label>Amount:</label>
+            <input type="text" name="amount" value="{{value.mount}}" maxlength="10">
+
+            <!-- Custom Stylish Radio Buttons -->
+            <label class="radio-item">
+                <input type="radio" name="mode" value="search" checked>
+                <span class="custom-radio"></span>
+                <span class="radio-label">Search</span>
+            </label>
+
+            <label class="radio-item">
+                <input type="radio" name="mode" value="order">
+                <span class="custom-radio"></span>
+                <span class="radio-label">Order</span>
+            </label>
+            
+            <input type="submit" class="submit-btn" value="Submit">
+        </form>
+        
+        <input type="button" class="back-btn" value="Back" onclick="window.location.href='/'">
+        <input type="button" class="ot-btn" value="Show Stocks" onclick="window.location.href='/show'">
+
+    </div>
+
+</body>
+</html>

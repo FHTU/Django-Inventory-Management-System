@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Items List</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #7da0ff, #96b3ff);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            animation: fadeIn 0.3s ease-out;
+
+        }
+
+        /* parent wrapper to hold TWO containers */
+        .wrapper {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .container0 {
+            width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.2; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.25s;
+        }
+
+        input:focus {
+            border-color: #567dff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(86,125,255,0.4);
+        }
+
+        .item {
+            background: #eef3ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-info,
+        .item-amt {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #666;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+        }
+        /* --- Submit Button --- */
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 30px;
+            background: #4a76ff;
+            color: white;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1c3fc9ff;
+            box-shadow: 0 0 15px rgba(74,118,255,0.9);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.97);
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #5397afff;
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #498196ff;
+            box-shadow: 0 0 12px rgba(109, 137, 199, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .ot-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #bbbbbb;
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .ot-btn:hover {
+            background: #999999;
+            box-shadow: 0 0 12px rgba(180,180,180,0.7);
+            transform: translateY(-2px);
+        }
+
+
+
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-item input {
+            opacity: 0;  /* hide default radio */
+            position: absolute;
+            left: 0;
+        }
+
+        .custom-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #4a76ff;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            transition: 0.25s ease;
+        }
+
+        /* Radio circle fill */
+        .custom-radio::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #4a76ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: scale(0) translate(-50%, -50%);
+            transition: 0.25s ease;
+        }
+
+        /* When checked → animate fill */
+        .radio-item input:checked + .custom-radio::after {
+            transform: scale(1) translate(-50%, -50%);
+        }
+
+        /* Hover effects */
+        .radio-item:hover .custom-radio {
+            border-color: #204eff;
+            transform: scale(1.1);
+        }
+
+        /* Text next to radio */
+        .radio-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-left: 6px;
+        }
+
+
+
+        /* MOBILE */
+        @media (max-width: 540px) {
+            .container {
+                width: 100%;
+                padding: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- box #2 -->
+    <div class="container0">
+        <div class="title">Add / Edit Items</div>
+
+        <form action="." method="post">
+            {% csrf_token %}
+            <input type="text" name="name" class="Name" placeholder="Name..." , maxlength="50" >
+            <input type="text" name="code" class="Code" placeholder="Code..." , maxlength="10">
+            <input type="text" name="amount" class="Amount" placeholder="Amount..." , maxlength="10">
+            
+            <label class="radio-item">
+                <input type="radio" name="mode" value="add" checked>
+                <span class="custom-radio"></span>
+                <span class="radio-label">Add</span>
+            </label>
+            
+            <label class="radio-item">
+                <input type="radio" name="mode" value="remove" >
+                <span class="custom-radio"></span>
+                <span class="radio-label">Remove</span>
+            </label>
+
+            <input type="submit" class="submit-btn" value="Submit">
+        </form>
+        
+        <input type="button" class="back-btn" value="Back" onclick="window.location.href='/'">
+        <input type="button" class="ot-btn" value="Order Stocks" onclick="window.location.href='/order'">
+
+
+    </div>
+        <!-- box #1 -->
+    <div class="container">
+        <div class="title">Items List</div>
+
+        <input type="text" class="searchName" placeholder="Search by Name..." maxlength="50">
+        <input type="text" class="searchCode" placeholder="Search by Code..." maxlength="10">
+        <input type="text" class="searchAmount" placeholder="Search by Amount..." maxlength="10">
+
+        <div class="itemsList">
+            {% for i in data %}
+            <div class="item">
+                <div class="item-name">{{ i.name }}</div>
+                <div class="item-info">Code: {{ i.code }}</div>
+                <div class="item-amt">Amount: {{ i.amount }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    const nameInput = document.querySelector(".searchName");
+    const codeInput = document.querySelector(".searchCode");
+    const amountInput = document.querySelector(".searchAmount");
+    const items = document.querySelectorAll(".itemsList .item");
+
+    function filterItems() {
+        const nameVal = nameInput.value.toLowerCase();
+        const codeVal = codeInput.value.toLowerCase();
+        const amountVal = amountInput.value.toLowerCase();
+
+        items.forEach(item => {
+            const name = item.querySelector(".item-name").textContent.toLowerCase();
+            const code = item.querySelector(".item-info").textContent.toLowerCase();
+            const amt = item.querySelector(".item-amt").textContent.toLowerCase();
+
+            const ok =
+                name.includes(nameVal) &&
+                code.includes(codeVal) &&
+                amt.includes(amountVal);
+
+            item.style.display = ok ? "block" : "none";
+        });
+    }
+
+    nameInput.addEventListener("input", filterItems);
+    codeInput.addEventListener("input", filterItems);
+    amountInput.addEventListener("input", filterItems);
+</script>
+</html>
